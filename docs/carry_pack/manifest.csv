@@ -1,0 +1,12 @@
+source_file,pack_path
+/mnt/data/ASSET_IMPORT_CHECKLIST.md,docs/ASSET_IMPORT_CHECKLIST.md
+/mnt/data/DAY1_REBUILD_ORDER.md,docs/DAY1_REBUILD_ORDER.md
+/mnt/data/DO_NOT_BREAK.md,docs/DO_NOT_BREAK.md
+/mnt/data/P1A_HANDFEEL_CHECKSHEET.md,docs/P1A_HANDFEEL_CHECKSHEET.md
+/mnt/data/README_FOR_LAPTOP.md,docs/README_FOR_LAPTOP.md
+/mnt/data/RESOURCE_FILENAME_MAP_TEMPLATE.md,docs/RESOURCE_FILENAME_MAP_TEMPLATE.md
+/mnt/data/START_HERE.md,docs/START_HERE.md
+/mnt/data/assets.js,scaffold/src/ui/assets.js
+/mnt/data/battle.js,scaffold/src/core/battle.js
+/mnt/data/tuning.js,scaffold/src/data/tuning.js
+/mnt/data/index.html,scaffold/index.html

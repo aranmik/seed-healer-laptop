@@ -1,0 +1,15 @@
+category,asset_name,renamed_file,original_file
+pose_sheet,Aria Priest,SH_CHR_001_PRIEST_ARIA_POSESHEET_v001.png,/mnt/data/ghostwriter_images/context/02acd673-02ae-59e2-9159-eaa98453c3fc.png
+pose_sheet,Eli Shield Warrior,SH_CHR_101_SHIELD_WARRIOR_ELI_POSESHEET_v001.png,/mnt/data/ghostwriter_images/context/007eb14e-de64-55ee-84f4-ba60ee0bc1c1.png
+pose_sheet,Thorne Rogue,SH_CHR_201_ROGUE_THORNE_POSESHEET_v001.png,/mnt/data/ghostwriter_images/context/56e456e7-544b-5128-97e8-50fa24c309eb.png
+pose_sheet,Cael Hunter,SH_CHR_301_HUNTER_CAEL_POSESHEET_v001.png,/mnt/data/ghostwriter_images/context/e680d165-ac32-5e6b-bcce-7ee95ae83621.png
+pose_sheet,Rorin Shaman,SH_CHR_401_SHAMAN_RORIN_POSESHEET_v001.png,/mnt/data/ghostwriter_images/context/2871bd71-ea2c-53f9-8775-95ed843b0a42.png
+pose_sheet,Lumina Wizard,SH_CHR_501_WIZARD_LUMINA_POSESHEET_v001.png,/mnt/data/ghostwriter_images/context/49004c7e-b378-5022-aee6-8497c683e060.png
+boss_anchor,Earthroot Golem,SH_BOSS_001_EARTHROOT_GOLEM_ANCHOR_v001.png,/mnt/data/ghostwriter_images/context/d7f4817e-17ff-5d63-aede-ff3de8732836.png
+boss_pose_sheet,Earthroot Golem,SH_BOSS_001_EARTHROOT_GOLEM_POSESHEET_v002.png,/mnt/data/ghostwriter_images/context/bcd77d01-fc99-5df6-8f6f-7288e2a8ba3f.png
+ui,Title Screen Concept,SH_UI_001_TITLE_SCREEN_CONCEPT_v001.png,/mnt/data/ghostwriter_images/context/4b29bb1c-c4fb-53b5-9cbe-eb622da31076.png
+ui,Battle Screen Concept,SH_UI_010_BATTLE_SCREEN_CONCEPT_v001.png,/mnt/data/ghostwriter_images/context/85f08c23-8d80-543f-8e09-92fdc28ef1a2.png
+icon_sheet,Set A Core Skills,SH_ICON_SHEET_SET_A_CORE_SKILLS_v001.png,/mnt/data/ghostwriter_images/context/cd694428-2070-52e0-a5ab-6e95ccc5f9e2.png
+icon_sheet,Holy Support Concept,SH_ICON_SHEET_HOLY_SUPPORT_CONCEPT_v001.png,/mnt/data/ghostwriter_images/context/b5c7d396-bf65-5bd3-adf3-3d5e2882ee34.png
+icon_sheet,Nature Passive Concept,SH_ICON_SHEET_NATURE_PASSIVE_CONCEPT_v001.png,/mnt/data/ghostwriter_images/context/edd40d41-e2d0-58a4-a0ec-11f0322ea63a.png
+icon_sheet,Misc Style Reference,SH_ICON_SHEET_MISC_STYLE_REFERENCE_v001.png,/mnt/data/ghostwriter_images/context/debf424d-abe5-5412-927a-43fd0a00c1ae.png

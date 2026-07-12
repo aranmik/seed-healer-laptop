@@ -1,0 +1,32 @@
+# Seed Healer — Demo v1 공개 배포 제외 목록 (Public Preview Release 01)
+# 공개 GitHub Pages에는 "게임 런타임 + 문서"만 올린다.
+# 개발 전용 / 마스터·원본 아트 / 미사용 리소스 / 대용량 산출물은 제외(권리 불분명·불필요·용량).
+# ★게임 동작에 필요한 런타임 자산은 전부 유지(assets/allies·bosses(sprites)·icons·priest·sprites·ui + 은총 아이콘).
+# ※ gitignore는 인라인 주석을 지원하지 않는다 — 주석은 반드시 독립 라인.
+
+# OS / 도구 잡파일
+Thumbs.db
+.DS_Store
+node_modules/
+*.log
+*.tmp
+
+# 개발 전용(런타임 미사용): P1-A 원본 프로토 / 뷰어 HTML / 리포트 / PS 스크립트
+/reference/
+/dev/
+/reports/
+/tools/
+
+# 미사용 보스 리소스 팩(61MB·Demo v1 미등장 보스)
+/assets/bosses/_intake/
+
+# 마젠타 마스터 시트(포즈시트 원본·런타임 미사용)
+/assets/**/source/
+
+# visual_assets: 마스터 시트 전부 제외, 단 은총 런타임 아이콘 1개만 포함
+/visual_assets/*
+!/visual_assets/icons
+/visual_assets/icons/*
+!/visual_assets/icons/extracted
+/visual_assets/icons/extracted/*
+!/visual_assets/icons/extracted/icon_breath_candidate_v001.png
