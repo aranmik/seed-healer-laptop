@@ -152,8 +152,8 @@ function quietBoss(B) { B.boss.nextAuto = B.boss.nextSmash = B.boss.nextTremor =
 // C. index.html / data 읽힘 배선 (정적 검사)
 // ══════════════════════════════════════════════════════════════
 // ── A1 이벤트 피드 ──
-check('C-A1a combat-feed 요소 + pushFeed/clearFeed/renderFeed 존재',
-  /id="combat-feed"/.test(html) && /function pushFeed\(/.test(html) && /function clearFeed\(/.test(html) && /function renderFeed\(/.test(html));
+check('C-A1a 결과 피드 요소 + pushFeed/clearFeed 존재 (Mobile Fit 01: combat-feed→전장 토스트 combat-toast)',
+  /id="combat-toast"/.test(html) && /function pushFeed\(/.test(html) && /function clearFeed\(/.test(html));
 check('C-A1b 피드가 실제 event에 배선(absorb 차단·cleansed 해방·seedProc 개화)',
   /case 'absorb':[\s\S]{0,260}pushFeed\(/.test(html) && /case 'cleansed':[\s\S]{0,220}pushFeed\(/.test(html) && /case 'seedProc':[\s\S]{0,200}pushFeed\(/.test(html));
 check('C-A1c 위험/해결/피격 3계열 태그 존재', /FEED_TAG\s*=\s*\{[\s\S]{0,120}threat[\s\S]{0,80}answer/.test(html));

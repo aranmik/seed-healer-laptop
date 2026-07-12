@@ -61,7 +61,7 @@ check('F1 기존 답변 FX 유지(ring cast-ring · cleanse sk-cleanse · hot sk
 check('F2 보스 telegraph/색 유지(bossBurst·stageSweep·bf-water/bf-naga)',
   /stageSweep\(\)/.test(consume) && /bf-water/.test(html) && /bf-naga/.test(html));
 check('F3 평상시 조용(danger-ring 기본 투명) · spacing · 포기 UX 유지',
-  /\.bf-danger\{[^}]*background:transparent/.test(html) && /\.bf-ally-c\{left:50%;bottom:27%/.test(html) && /id="bh-exit"/.test(html));
+  /\.bf-danger\{[^}]*background:transparent/.test(html) && /\.bf-ally-c\{left:50%;bottom:19%/.test(html) && /id="bh-exit"/.test(html));
 
 console.log(`\n=== combat call-and-response fx: ${pass} PASS / ${fail} FAIL ${fail === 0 ? '— ALL PASS' : ''} ===`);
 if (fail > 0) process.exitCode = 1;

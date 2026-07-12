@@ -12,26 +12,25 @@ function check(name, cond, note) {
 const html = readFileSync(new URL('../../index.html', import.meta.url), 'utf8');
 const num = (re) => { const m = html.match(re); return m ? parseFloat(m[1]) : NaN; };
 
-// 변경 후 bottom%(현행) · 변경 전 기준값(29/31.5/28)
-const PREV = { l: 29, c: 31.5, r: 28 };
-const lB = num(/\.bf-ally-l\{left:4\.5%;bottom:([\d.]+)%\}/);
-const cB = num(/\.bf-ally-c\{left:50%;bottom:([\d.]+)%;/);
-const rB = num(/\.bf-ally-r\{right:4\.5%;bottom:([\d.]+)%\}/);
+// ★Mobile Fit Hotfix 01 재배치: 전사=중앙 전방 축(c) · 도적=좌 flank(l) · 법사=우 후방(r) · 전원 하단 · 보스 소폭 상향.
+const lB = num(/\.bf-ally-l\{left:3\.5%;bottom:([\d.]+)%\}/);   // 도적
+const cB = num(/\.bf-ally-c\{left:50%;bottom:([\d.]+)%;/);      // 전사(중앙 전방)
+const rB = num(/\.bf-ally-r\{right:3\.5%;bottom:([\d.]+)%\}/);  // 법사
 const aB = num(/\.bf-aria\{[^}]*bottom:([\d.]+)%/);
+const bossTop = num(/\.bf-boss\{left:50%;top:([\d.]+)%/);
 
-// ══ A. 공통 대형 ══
-check('A1 전사/도적/마법사 3명 모두 기존보다 아래 이동(bottom% 감소)',
-  lB < PREV.l && cB < PREV.c && rB < PREV.r, `l ${PREV.l}→${lB} · c ${PREV.c}→${cB} · r ${PREV.r}→${rB}`);
-const dl = PREV.l - lB, dc = PREV.c - cB, dr = PREV.r - rB;
-check('A2 공통 규격 = 동일 delta 하향(보스별/아군별 땜질 아님)',
-  Math.abs(dl - dc) < 0.01 && Math.abs(dc - dr) < 0.01 && dl > 0, `delta ${dl}/${dc}/${dr}`);
-check('A3 세 명 상대 좌우/깊이 순서 불변(c 최상단 > l > r)',
-  cB > lB && lB > rB && cB > PREV.l - dl && (PREV.c > PREV.l && PREV.l > PREV.r), `${cB}>${lB}>${rB}`);
-check('A4 ARIA 위치 불변(bottom 2.5% 유지)', aB === 2.5, `aria bottom ${aB}%`);
+// ══ A. 모바일 재배치 대형 ══
+check('A1 전사(중앙)가 전방 축 = 셋 중 가장 아래(bottom% 최소·보스 정면에서 버팀)',
+  cB < lB && cB < rB, `c ${cB} < l ${lB} · r ${rB}`);
+check('A2 전원 하단 밴드(bottom 15~26% — 하단 정렬·전장 상단 미침범)',
+  [lB, cB, rB].every(v => v >= 15 && v <= 26), `l ${lB} · c ${cB} · r ${rB}`);
+check('A3 좌우 문법 유지(도적 left flank · 법사 right · 전사 중앙 translateX)',
+  /\.bf-ally-l\{left:3\.5%/.test(html) && /\.bf-ally-r\{right:3\.5%/.test(html) && /\.bf-ally-c\{left:50%;bottom:[\d.]+%;transform:translateX\(-50%\)\}/.test(html));
+check('A4 ARIA 하단 중앙(2%) · 보스 소폭 상향(top 1%)', aB === 2 && bossTop === 1, `aria ${aB}% · boss top ${bossTop}%`);
 
 // ══ B. 반응/FX 충돌 없음(bottom 위치 vs transform/filter 반응) ══
-check('B1 위치는 bottom(위치 속성)만 조정 — 아군 l/r 규칙에 transform 없음',
-  /\.bf-ally-l\{left:4\.5%;bottom:[\d.]+%\}/.test(html) && /\.bf-ally-r\{right:4\.5%;bottom:[\d.]+%\}/.test(html));
+check('B1 위치는 bottom/left(위치 속성)만 조정 — 아군 l/r 규칙에 transform 없음',
+  /\.bf-ally-l\{left:3\.5%;bottom:[\d.]+%\}/.test(html) && /\.bf-ally-r\{right:3\.5%;bottom:[\d.]+%\}/.test(html));
 check('B2 중앙 아군 base transform(translateX(-50%)) 보존', /\.bf-ally-c\{left:50%;bottom:[\d.]+%;transform:translateX\(-50%\)\}/.test(html));
 check('B3 반응 transform keyframe이 중앙 translateX(-50%) 보존(heroHitC/heroLungeC)',
   /@keyframes heroHitC\{[^}]*translateX\(-50%\)/.test(html) && /@keyframes heroLungeC\{[^}]*translateX\(-50%\)/.test(html));
@@ -49,8 +48,9 @@ check('C2 selectBoss는 보스 img/height/marginLeft만 갱신(아군 위치 무
   !/bf-ally[^\n]*=\s*['"`]?\d/.test(html));
 
 // ══ D. 하단 UI/ARIA 보호(값 기반) ══
-check('D1 ARIA·보스 미이동 → 아군만 하향(ARIA bottom 2.5% 고정)', aB === 2.5);
-check('D2 하향폭이 과대하지 않음(공통 delta ≤ 6%p — ARIA 뭉침/UI 침범 방지)', dc <= 6 && dc >= 2, `delta ${dc}%p`);
+check('D1 ARIA 하단 중앙(bottom 2% · 파티 카드 침범 없이 최후방)', aB === 2, `aria bottom ${aB}%`);
+check('D2 아군 하단 밴드가 과도하게 낮지 않음(bottom ≥ 15% — 카드/apron 침범 방지)',
+  Math.min(lB, cB, rB) >= 15, `min bottom ${Math.min(lB, cB, rB)}%`);
 
 // ══ E. 이전 카드 보호(danger-ring 조건화·포기 UX 무손상) ══
 check('E1 danger-ring 기본 투명 유지(Combat Clarity 01)', /\.bf-danger\{[^}]*background:transparent/.test(html));

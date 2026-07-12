@@ -67,7 +67,7 @@ check('F2 기존 4종 FX 유지(quickheal/salvation react-heal·shield react-shi
 check('F3 보스 telegraph FX 유지(smash→bossBurst·tremor→stageSweep)',
   /case 'smash':[\s\S]{0,80}bossBurst/.test(consume) && /case 'tremor':[\s\S]{0,80}stageSweep/.test(consume));
 check('F4 spacing/포기 UX/danger-ring 기본투명 유지',
-  /\.bf-ally-c\{left:50%;bottom:27%/.test(html) && /id="bh-exit"/.test(html) && /\.bf-danger\{[^}]*background:transparent/.test(html));
+  /\.bf-ally-c\{left:50%;bottom:19%/.test(html) && /id="bh-exit"/.test(html) && /\.bf-danger\{[^}]*background:transparent/.test(html));
 check('F5 ARIA 원점 supportSpark 재사용(dynamic target 추적)', /function supportSpark\(targetIdx\)/.test(html));
 
 console.log(`\n=== skill fx readability: ${pass} PASS / ${fail} FAIL ${fail === 0 ? '— ALL PASS' : ''} ===`);

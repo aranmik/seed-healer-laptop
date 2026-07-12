@@ -248,7 +248,7 @@ body{background:#100a05;display:flex;justify-content:center;align-items:center;f
 @keyframes skfxFade{0%{opacity:0}26%{opacity:1}100%{opacity:0}}
 /* 사제도 이제 전장 노출 — 피격 recoil은 중앙 계열(translateX(-50%) 보존) keyframe 사용 */
 .bf-aria.hero-hit{animation:heroHitC .18s ease-out}
-.bf-boss{left:50%;top:2%;transform:translateX(-50%)}
+.bf-boss{left:50%;top:1%;transform:translateX(-50%)}   /* Mobile Fit Hotfix 01 (C): 보스 소폭 상향(2%→1%) */
 /* 신규 12포즈는 362x362 정사각(투명 여백 포함) — 본체가 캔버스의 ~75%라 스케일 상향으로 기존 위압감 유지(Ingame Sprite Preview 01, 유키PD 승인) */
 .bf-boss img.spr{height:322px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.65))}
 .bf-boss.wind img.spr{filter:drop-shadow(0 0 10px rgba(226,120,60,.8)) drop-shadow(0 12px 18px rgba(0,0,0,.65))}
@@ -366,10 +366,12 @@ body{background:#100a05;display:flex;justify-content:center;align-items:center;f
 .battlefield.bf-naga  .bf-danger.hot{background:radial-gradient(ellipse at center,rgba(226,72,64,.5),rgba(226,72,64,.16) 55%,transparent 72%);border-color:rgba(255,120,96,.8);box-shadow:inset 0 0 22px rgba(226,72,64,.34)}
 /* Battlefield Spacing Polish 01 — 아군 3명 공통 -4.5%p 하향(전 보스 공통·보스와 시각 분리·나가↔도적 겹침 완화).
    ★bottom(위치)만 조정 → transform 반응(heroHit/heroLunge·중앙 translateX(-50%))·filter 반응과 충돌 0. 좌우 상대차/깊이(29>28, c 최상단) 유지. ARIA·보스 무변경. */
-.bf-ally-l{left:4.5%;bottom:24.5%}  .bf-ally-l img.spr{height:106px}
-.bf-ally-c{left:50%;bottom:27%;transform:translateX(-50%)} .bf-ally-c img.spr{height:99px}
-.bf-ally-r{right:4.5%;bottom:23.5%} .bf-ally-r img.spr{height:103px}
-.bf-aria{left:50%;bottom:2.5%;transform:translateX(-50%)} .bf-aria img.spr{height:106px}
+/* Mobile Fit Hotfix 01 (C) — 전원 하단 정렬 + 중앙=전사(전방 축)·좌=도적(flank)·우=법사(후방).
+   ★height는 각 히어로 crop 기준 유지(전사 106·도적 99·법사 103) — 클래스는 바뀌어도 각자 원래 크기. */
+.bf-ally-l{left:3.5%;bottom:22%}  .bf-ally-l img.spr{height:99px}    /* 도적 — 좌측 기습 flank(약간 후방) */
+.bf-ally-c{left:50%;bottom:19%;transform:translateX(-50%)} .bf-ally-c img.spr{height:106px}  /* 전사 — 중앙 전방 축(보스 정면) */
+.bf-ally-r{right:3.5%;bottom:23%} .bf-ally-r img.spr{height:103px}   /* 법사 — 우측 후방 원거리 */
+.bf-aria{left:50%;bottom:2%;transform:translateX(-50%)} .bf-aria img.spr{height:104px}       /* 아리아 — 최후방 사제(하단 중앙) */
 /* Battlefield Composition & Priest Presence Polish 01 — 나라님 재판단으로 Visual Hotfix 01의 "ARIA 전장 비노출" 폐기.
    사제=후방 지원자: 도적(중앙 전방) 아래쪽 하단 빈 공간에 실제 노출. 전방 3인보다 뒤(화면 아래=카메라 근접)·
    전장 주도권은 골렘+동료 3 구도 유지(150px·기존 anchor 170보다 소폭 절제). */
@@ -479,8 +481,10 @@ body{background:#100a05;display:flex;justify-content:center;align-items:center;f
 /* (A1) 곧/방금/해결 — "곧" 리드 라벨 + 위협 대기열 + 아래 2줄 이벤트 피드(stacked timeline). 실제 event만. */
 .t-lead{position:relative;font-size:8px;font-weight:900;letter-spacing:.5px;color:#120c06;background:rgba(150,132,86,.62);
   border-radius:5px;padding:1px 5px;margin-right:6px;flex:none;text-shadow:none}
-/* ── Micro Polish 01 (A) — 위협 대기열: 최대 3행·각 행 독립 진행/해결/퇴장·min-height로 전장 들썩임 방지 ── */
-.threat-queue{margin-top:6px;min-height:47px;display:flex;flex-direction:column;justify-content:center;gap:3px}
+/* ── 위협 대기열: 최대 3행·각 행 독립 진행/해결/퇴장 ──
+   Mobile Fit Hotfix 01 (D): idle 예약을 2행(47px)→1행(24px)으로 축소 → 상단 빈 공간 회수(전장에 환원).
+   1~3 위협 시에만 성장(예고 중=고긴장·짧음). "질문이 줄 서 있다" 감각 유지. */
+.threat-queue{margin-top:5px;min-height:24px;display:flex;flex-direction:column;justify-content:flex-start;gap:3px}
 .tq-idle{box-sizing:border-box;height:22px;border-radius:11px;background:#20100a;border:1px solid #4a3b22;display:flex;align-items:center;padding:0 10px}
 .tq-idle[hidden]{display:none}   /* display:flex가 [hidden] UA 규칙을 덮어 idle이 안 숨던 버그 방지(위협 행과 이중 노출 차단) */
 .tq-idle-txt{font-size:10px;font-weight:800;color:#b7a074}
@@ -511,17 +515,20 @@ body{background:#100a05;display:flex;justify-content:center;align-items:center;f
 .tq-row.safe:not(.tq-resolved){box-shadow:0 0 6px rgba(111,158,88,.3)}
 .tq-res-nm{display:inline-block;animation:tqResPop .32s ease-out}
 @keyframes tqResPop{0%{opacity:0;transform:scale(.82)}45%{opacity:1;transform:scale(1.1)}100%{transform:scale(1)}}
-.combat-feed{margin-top:5px;height:30px;display:flex;flex-direction:column;justify-content:flex-start;gap:2px;overflow:hidden}
-.cf-line{display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;line-height:14px;color:#d8c8a4;
-  opacity:0;transform:translateY(-3px);animation:cfIn .22s ease-out forwards;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cf-line .cf-tag{flex:none;font-size:7.5px;font-weight:900;letter-spacing:.3px;border-radius:4px;padding:1px 4px;color:#160f08}
-.cf-line.threat .cf-tag{background:#e0794a}
-.cf-line.answer .cf-tag{background:#7fc36a}
-.cf-line.hit    .cf-tag{background:#c86a5c}
-.cf-line.info   .cf-tag{background:#8a7a52}
-.cf-line.threat{color:#f2c19a}.cf-line.answer{color:#c8e6b0}.cf-line.hit{color:#f0b0a0}
-.cf-line.fade{opacity:.5;font-size:9px;color:#a89877}
-@keyframes cfIn{0%{opacity:0;transform:translateY(-3px)}100%{opacity:1;transform:translateY(0)}}
+/* Mobile Fit Hotfix 01 (A) — 결과 로그를 전장 하단 오버레이 토스트로. 상단 고정 레일 미점유(전장 세로 공간 환원).
+   전장 바닥(party 위)에 짧게 뜨고 fade out · 보스/타깃/HP바 안 가림(하단 floor·z-index 14·짧게). */
+.combat-toast{position:absolute;left:0;right:0;bottom:10%;display:flex;flex-direction:column;align-items:center;gap:3px;
+  pointer-events:none;z-index:14}
+.ct-item{display:flex;align-items:center;gap:5px;max-width:90%;font-size:10px;font-weight:800;line-height:1;
+  padding:3px 9px;border-radius:999px;background:rgba(18,11,5,.82);box-shadow:0 2px 6px rgba(0,0,0,.55);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:ctToast 1.8s ease-out forwards}
+.ct-item .cf-tag{flex:none;font-size:7.5px;font-weight:900;letter-spacing:.3px;border-radius:4px;padding:1px 4px;color:#160f08}
+.ct-item.threat .cf-tag{background:#e0794a}
+.ct-item.answer .cf-tag{background:#7fc36a}
+.ct-item.hit    .cf-tag{background:#c86a5c}
+.ct-item.info   .cf-tag{background:#8a7a52}
+.ct-item.threat{color:#f2c19a}.ct-item.answer{color:#c8e6b0}.ct-item.hit{color:#f0b0a0}.ct-item.info{color:#d8c8a4}
+@keyframes ctToast{0%{opacity:0;transform:translateY(9px) scale(.94)}13%{opacity:1;transform:translateY(0) scale(1)}72%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
 /* (A2) 머리 위 짧은 행동 표기 — 아군 공격/보스 signature. 평소 조용, 실제 행동 순간만 짧게. */
 .action-pop{position:absolute;transform:translate(-50%,0);z-index:16;pointer-events:none;white-space:nowrap;
   font-size:11px;font-weight:900;padding:1px 7px;border-radius:8px;letter-spacing:.3px;
@@ -692,8 +699,7 @@ body{background:#100a05;display:flex;justify-content:center;align-items:center;f
       <div class="threat-queue" id="threat-queue">
         <div class="tq-idle" id="tq-idle"><span class="t-lead">곧</span><span class="tq-idle-txt" id="tq-idle-txt">다음 위협 대기</span></div>
       </div>
-      <!-- Final Battle Readability 01 (A1) — 방금 일어난 일 / 막 해결된 일 이벤트 피드(2줄 stacked·실제 event만·fake 예고 없음) -->
-      <div class="combat-feed" id="combat-feed"></div>
+      <!-- Mobile Fit Hotfix 01 (A) — 결과 피드는 상단 고정 레일에서 제거 → 전장 오버레이 토스트(#combat-toast·battlefield 내부)로 이동 -->
     </div>
     <div class="battlefield" id="battlefield"></div>
     <div class="dev-pose collapsed" id="dev-pose" hidden>
@@ -923,14 +929,16 @@ if (!err) {
     bf.style.backgroundImage = `linear-gradient(rgba(23,16,9,.15), rgba(23,16,9,.42)), url('${ASSETS.ui.battleBg}')`;
     bf.style.backgroundSize = 'cover'; bf.style.backgroundPosition = 'center 36%';
   }
-  const slotCls = ['bf-ally-l flip','bf-ally-c','bf-ally-r'];
+  // Mobile Fit Hotfix 01 (C) — 전사=전방 중앙 축(보스 정면), 도적=좌측 기습 flank, 법사=우측 후방. ★시각 좌표(class)만 변경 · actor id/HP/타깃/행동명/FX 원점/전투계산 무변경 · 파티 카드 순서 무변경.
+  const slotCls = ['bf-ally-c','bf-ally-l flip','bf-ally-r'];   // PARTY=[warrior,rogue,mage] → warrior 중앙 / rogue 좌flank / mage 우
   bf.innerHTML =
     `<div class="bf-danger" id="danger-ring"></div>` +
     `<div class="bf-stagefx" id="stage-fx"></div>` +  /* Boss Telegraph & Attack FX Polish 01 — 파티 전체 위협 sweep 레이어 */
     `<div class="bf-actor bf-boss" id="act-boss">${spr(bossShowIdle, bossEmoji)}</div>` +
     PARTY.map((id,i) => `<div class="bf-actor ${slotCls[i]}" id="act-${i+1}">${spr((A[id].field || A[id].idle), EMOJI[id])}</div>`).join('') +
     `<div class="bf-heal-ring"></div>` +
-    `<div class="bf-actor bf-aria" id="act-0">${spr(ASSETS.priest.castHeal || ASSETS.priest.idle, EMOJI.priest)}</div>`;
+    `<div class="bf-actor bf-aria" id="act-0">${spr(ASSETS.priest.castHeal || ASSETS.priest.idle, EMOJI.priest)}</div>` +
+    `<div class="combat-toast" id="combat-toast"></div>`;   // Mobile Fit Hotfix 01 (A) — 결과 로그를 전장 오버레이 토스트로(상단 고정 레일 제거)
   const actorEls = [$('act-0'), $('act-1'), $('act-2'), $('act-3')];
   const bossActor = $('act-boss'), dangerRing = $('danger-ring'), stageFx = $('stage-fx');
 
@@ -1333,24 +1341,22 @@ if (!err) {
   }
   function clearSkillFx(){ actorEls.forEach(a => { if (a) a.querySelectorAll('.skfx').forEach(n => n.remove()); }); }
 
-  // ── Final Battle Readability 01 (A1) — 이벤트 피드(방금 일어난 일 / 막 해결된 일). 실제 event만·fake 미래 예고 없음. 최근 2줄 stacked. ──
-  const feedEl = $('combat-feed');
-  let feedLog = [];
+  // ── 결과 로그(방금 일어난 일 / 막 해결된 일). 실제 event만·fake 미래 예고 없음. ──
+  //   Mobile Fit Hotfix 01 (A): 상단 고정 레일(#combat-feed) → 전장 하단 오버레이 토스트(#combat-toast). 짧게 뜨고 fade out.
+  //   #combat-toast는 newBattle의 bf.innerHTML에 재생성되므로 매번 getElementById(캐시 stale 방지).
   const FEED_TAG = { threat:'위험', hit:'피격', answer:'해결', info:'전황' };
-  function renderFeed(){
-    if (!feedEl) return;
-    feedEl.innerHTML = feedLog.map((f,i)=>{
-      const fade = (feedLog.length===2 && i===0) ? ' fade' : '';
-      return `<div class="cf-line ${f.kind}${fade}"><span class="cf-tag">${FEED_TAG[f.kind]||'전황'}</span>${f.text}</div>`;
-    }).join('');
-  }
   function pushFeed(text, kind){
     if (cur !== 'battle') return;
-    feedLog.push({ text, kind: kind||'info' });
-    if (feedLog.length > 2) feedLog = feedLog.slice(-2);
-    renderFeed();
+    const el = document.getElementById('combat-toast'); if (!el) return;
+    const k = kind || 'info';
+    const t = document.createElement('div');
+    t.className = 'ct-item ' + k;
+    t.innerHTML = `<span class="cf-tag">${FEED_TAG[k] || '전황'}</span>${text}`;
+    el.appendChild(t);
+    while (el.children.length > 3) el.removeChild(el.firstChild);   // 동시 최대 3(약한 stack)
+    setTimeout(() => t.remove(), 1800);
   }
-  function clearFeed(){ feedLog = []; if (feedEl) feedEl.innerHTML = ''; }
+  function clearFeed(){ const el = document.getElementById('combat-toast'); if (el) el.innerHTML = ''; }
 
   // ── Final Battle Readability 01 (A2) — 머리 위 짧은 행동 표기. 아군 공격/보스 signature. 평소 조용, 실제 행동 순간만(스팸 방지). ──
   const ALLY_ACT = { warrior:'방패 타격!', rogue:'기습!', mage:'마력탄!', shaman:'토템 강타!', hunter:'덫사격!' };

@@ -83,8 +83,8 @@ check('B7 전환(새 전투/포기/복귀) 시 clearThreatQueue 정리',
 check('B8 A3 보스명 매핑 — push 문구 TELE_TXT.push + threatLabels 보스별(water 잔파도·naga 해일)',
   /B\.boss\.push \? \(TELE_TXT\.push/.test(html) &&
   /function threatLabels\(\)[\s\S]{0,220}water[\s\S]{0,90}잔파도[\s\S]{0,160}naga[\s\S]{0,90}해일/.test(html));
-check('B9 대기열 min-height 예약(0~2행 전장 들썩임 방지·border-box)',
-  /\.threat-queue\{[\s\S]{0,60}min-height:47px/.test(html) && /\.tq-row\{[\s\S]{0,40}box-sizing:border-box/.test(html) &&
+check('B9 대기열 min-height 예약(Mobile Fit 01: 1행 24px로 축소·상단 공간 회수·border-box)',
+  /\.threat-queue\{[\s\S]{0,90}min-height:24px/.test(html) && /\.tq-row\{[\s\S]{0,40}box-sizing:border-box/.test(html) &&
   /\.tq-idle\[hidden\]\{display:none\}/.test(html));
 
 // ══════════════════════════════════════════════════════════════

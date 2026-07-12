@@ -69,8 +69,8 @@ check('E4 clearBossFx가 gather/sweep/burst 전부 제거',
 
 // ══ F. 회귀(기존 문법 보존) ══
 check('F1 포기 UX 유지(bh-exit / exit-pop)', /id="bh-exit"/.test(html) && /id="exit-pop"/.test(html));
-check('F2 아군 spacing 유지(bf-ally-c bottom 27% · bf-aria 2.5%)',
-  /\.bf-ally-c\{left:50%;bottom:27%/.test(html) && /\.bf-aria\{left:50%;bottom:2\.5%/.test(html));
+check('F2 아군 staging 존재(Mobile Fit 01 재배치: bf-ally-c 전사 bottom 19% · bf-aria 2%)',
+  /\.bf-ally-c\{left:50%;bottom:19%/.test(html) && /\.bf-aria\{left:50%;bottom:2%/.test(html));
 check('F3 golem 기본 위험원은 여전히 붉음(.hot red)', /\.bf-danger\.hot\{background:radial-gradient\(ellipse at center,rgba\(224,86,52/.test(html));
 
 console.log(`\n=== boss telegraph & attack fx: ${pass} PASS / ${fail} FAIL ${fail === 0 ? '— ALL PASS' : ''} ===`);
