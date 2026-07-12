@@ -56,7 +56,7 @@
 
 ## 실행
 
-**공개 URL:** _(GitHub Pages 배포 후 기입 — Public Preview Release 대기)_
+**공개 URL:** https://aranmik.github.io/seed-healer-laptop/
 
 **로컬 실행:** 정적 HTML/CSS/JS 구조로, 별도 빌드가 없다. 로컬 정적 서버로 루트를 서빙하면 된다.
 

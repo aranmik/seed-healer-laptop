@@ -17,17 +17,18 @@
 - [x] **포기/재도전/보스 변경 상태 초기화** — 위협 대기열·피드·머리표기·FX·grace 잔류 0.
 - [x] **위협 대기열 1~3행** — 실제 B.tele(smash/tremor/root) 최대 3 독립 행·개별 해결·fake 예고 0.
 
-## B. 공개 배포 (대기)
-- [ ] **공개 Pages 배포** — GitHub Pages 활성. **BLOCKED**: git repo/원격 없음 + `gh` CLI 미설치 → 공개 저장소 생성/Pages 활성이 이 세션에서 불가(§Public Preview Release 01 HOLD 참조).
-- [ ] **경로/이미지/콘솔 (공개 URL)** — 상대경로 확인 완료(로컬)·대소문자 case 민감성은 **공개 Linux 서버에서만 검증 가능**(WATCH).
-- [ ] **휴대폰 실기** — 나라님 게이트.
+## B. 공개 배포
+- [x] **공개 Pages 배포 (2026-07-12)** — repo `aranmik/seed-healer-laptop`(public) · **URL https://aranmik.github.io/seed-healer-laptop/** · main/root · HTTPS enforced · build `built`.
+- [x] **경로/이미지/콘솔 (공개 URL)** — 공개 Linux 서버 실측: 전 자산 200(모듈/아이콘/스프라이트/배경/은총 아이콘)·**case 민감성 문제 0(broken image 0)**·console error 0.
+- [x] **desktop / 390px 검증** — overflow 0 · 3보스 이름 정상(골렘 문구 0) · 성소 9풀/6장착 · 은총 아이콘·무료 pill · 위협 대기열 idle.
+- [ ] **휴대폰 실기** — 나라님 게이트(실제 폰에서 접속).
 - [ ] **다른 기기 접속** — 나라님 게이트.
-- [ ] **favicon / 404 / 외부 네트워크** — 공개 URL에서 확인.
+- [~] **favicon** — `/favicon.ico` 404(무해·기본 아이콘·"신규 이미지 금지" 범위라 미추가). 외부 네트워크 의존성 0.
 
 ## C. 잠금 (다음 카드 — 이번 카드 범위 밖)
-- [ ] **최종 commit hash** — (공개 배포 시 확정)
-- [ ] **최종 tag** — ★이번 카드에서 생성하지 않음. 공개 URL 실기 PASS 후 **Demo v1 Lock & Archive 01**에서.
+- [x] **릴리스 commit** — `3c9766a3af1922eabd6022bd33c67399d9eec50c` (main·209파일 89MB·runtime+docs) + 문서 URL 갱신 커밋.
+- [ ] **최종 tag** — ★이번 카드에서 생성하지 않음. 나라님 휴대폰 실기 PASS 후 **Demo v1 Lock & Archive 01**에서.
 - [ ] **최종 잠금 문서** — Lock & Archive 01.
 
 ## 다음
-- Public Preview Release 01 HOLD 해소(원격 저장소 준비 + 공개 자산 curation 확정) → 공개 배포 → 나라님 휴대폰/타 기기 실기 → **Demo v1 Lock & Archive 01**(최종 tag·불변 잠금).
+- 나라님 휴대폰/타 기기 실기(공개 URL) → PASS 시 **Demo v1 Lock & Archive 01**(최종 tag·불변 잠금).
