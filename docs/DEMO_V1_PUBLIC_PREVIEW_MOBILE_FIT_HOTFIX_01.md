@@ -51,12 +51,13 @@
 | botSim 16/0 · probeSim ALL PASS | canonical md5 3파일 불변 |
 | 회귀 전체 갱신 후 ALL PASS | demoV1FinalMicroPolish 20 · finalBattleReadability 42 · skillPoolContract 39 · coreExtension 42 · callResponse 22 · skillFx 28 · bossTele 29 · **battlefieldSpacing 16(신 staging)** · clarity 26 · shrine 29 · loadoutLink 26 · balance 19 |
 | **로컬(5181·390px)** | boss-hud 89 · battlefield 472 · **전사 중앙 x195·도적 좌 x56·법사 우**(3보스 동일) · 토스트 battlefield 내부 렌더 · idle 큐 24 · overflow 0 · console 0 · broken 0 · 3보스 이름 정상 |
-| **공개 URL(https://aranmik.github.io/seed-healer-laptop/·390px)** | (아래 §7 재배포 후 실측) |
+| **공개 URL(https://aranmik.github.io/seed-healer-laptop/·390px)** | boss-hud 89 · battlefield 472 · threat-queue idle 24 · **전사 중앙 x195·도적 좌 x56·법사 우 x336**(3보스 동일) · 토스트 battlefield 내부 렌더 · 결과 레일 제거 · 은총 img+무료 pill · 3보스 이름 정상(골렘 문구 0) · overflow 0 · console error 0 · broken 0 |
 - ★frozen-tab: 스크린샷은 rAF로 타임아웃 → DOM/geometry/computed/network/console로 증빙(프로젝트 관례). 실제 눈맛은 나라님 폰.
 - ★safe-area: `#app height:100dvh`(주소창 변화 대응) 유지 · 나라님 스크린샷상 Safari가 상/하 safe-area 이미 처리(home indicator 하단 여백 존재) → 별도 env(safe-area) 보정 불필요(구조 미개편). 필요 시 후속 최소 보정.
 
 ## 7. push / Pages 재배포
-- (§commit/push 후 기입) commit hash · Pages build · 공개 URL 재검증 결과.
+- commit `a21cf08` "fix(mobile): battlefield fit hotfix …" → origin/main (local==origin) · force push 0.
+- Pages build **built** (commit a21cf08) · 공개 URL LIVE 재검증 완료(위 §6 표).
 
 ## 8. 보호/정본 유지
 - Demo v1 전투 재미·3보스 수치·seed 제품9/canonical12·은총 계약·9풀6장착·위협 대기열 개념·보스명 매핑·공개 URL 배포 상태 전부 유지.
