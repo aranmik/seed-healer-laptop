@@ -371,12 +371,13 @@ body{background:#100a05;display:flex;justify-content:center;align-items:center;f
 .bf-ally-l{left:3.5%;bottom:22%}  .bf-ally-l img.spr{height:99px}    /* 도적 — 좌측 기습 flank(약간 후방) */
 .bf-ally-c{left:50%;bottom:19%;transform:translateX(-50%)} .bf-ally-c img.spr{height:106px}  /* 전사 — 중앙 전방 축(보스 정면) */
 .bf-ally-r{right:3.5%;bottom:23%} .bf-ally-r img.spr{height:103px}   /* 법사 — 우측 후방 원거리 */
-.bf-aria{left:50%;bottom:2%;transform:translateX(-50%)} .bf-aria img.spr{height:104px}       /* 아리아 — 최후방 사제(하단 중앙) */
+/* Final Lock Hotfix 02 (A): ARIA를 우측으로만 이동(전사 중앙 ~ 법사 우 사이·left 50%→63%) → 전사로 가는 지원 FX 가독성↑. 하단 후방 정체성(bottom 2%) 유지. ★transform translateX(-50%) 보존(cast/hit 반응 keyframe 정합). */
+.bf-aria{left:63%;bottom:2%;transform:translateX(-50%)} .bf-aria img.spr{height:104px}       /* 아리아 — 최후방 사제(우측 비껴·전사-법사 사이) */
 /* Battlefield Composition & Priest Presence Polish 01 — 나라님 재판단으로 Visual Hotfix 01의 "ARIA 전장 비노출" 폐기.
    사제=후방 지원자: 도적(중앙 전방) 아래쪽 하단 빈 공간에 실제 노출. 전방 3인보다 뒤(화면 아래=카메라 근접)·
    전장 주도권은 골렘+동료 3 구도 유지(150px·기존 anchor 170보다 소폭 절제). */
 /* Battle Look Polish 01 — 하드 border 제거로 "빈 링" 느낌 해소 → 사제 자리에 은은한 치유 온기만 남김 */
-.bf-heal-ring{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);width:130px;height:30px;border-radius:50%;
+.bf-heal-ring{position:absolute;left:63%;bottom:2%;transform:translateX(-50%);width:130px;height:30px;border-radius:50%;   /* Final Lock Hotfix 02: ARIA 발밑 온기 링도 ARIA 새 위치(63%) 따라감 */
   background:radial-gradient(ellipse at center,rgba(236,196,100,.20),rgba(236,196,100,.06) 55%,transparent 78%)}
 .float{position:absolute;transform:translate(-50%,0);font-size:15px;font-weight:900;pointer-events:none;z-index:15;
   font-family:var(--sans);text-shadow:0 1px 3px rgba(0,0,0,.9);animation:floatUp .9s ease-out forwards;white-space:nowrap}
@@ -1662,6 +1663,32 @@ if (!err) {
   }
   requestAnimationFrame(frame);
 }
+
+// ── Final Lock Hotfix 02 (B) — 핵심 런타임 자산 백그라운드 preload/decode(최초 진입 stutter/까닥거림 완화) ──
+//   ★비차단(Promise.allSettled·실패 허용·게임은 대기 안 함) · master/source/미사용 대형 원본 제외 · 외부 네트워크 0 · fallback 유지.
+function preloadCoreAssets(){
+  try {
+    const M = new Set();
+    const add = (v) => { if (typeof v === 'string' && /\.(png|jpe?g|webp)$/i.test(v) && !/\/source\/|_intake|MAGENTA|MASTER|POSESHEET/i.test(v)) M.add(v); };
+    const walk = (o, d) => { if (!o || typeof o !== 'object' || d > 5) return; for (const k in o){ const v = o[k]; if (typeof v === 'string') add(v); else walk(v, d + 1); } };
+    if (ASSETS) { walk(ASSETS.ui, 0); walk(ASSETS.boss, 0); walk(ASSETS.icons, 0); walk(ASSETS.priest, 0); }   // 배경·3보스 idle/pose·아이콘·사제(연결된 런타임만)
+    if (HERO_V002) Object.keys(HERO_V002).forEach(k => walk(HERO_V002[k] && HERO_V002[k].crops, 0));           // 고정 파티/배우 crop(field/portrait/thumb)
+    if (BOSS_PROBES) ['golem','water','naga'].forEach(b => { const e = BOSS_PROBES[b]; if (e && e.idle) add(e.idle); });   // 물/나가 idle
+    if (SKILL_POOL) SKILL_POOL.forEach(s => { if (s && s.iconImg) add(s.iconImg); });                          // vow/seed/은총 아이콘
+    const list = [...M];
+    window.__preloadTotal = list.length; window.__preloadDone = 0; window.__preloadReady = false;
+    Promise.allSettled(list.map(u => {
+      const img = new Image(); img.src = u;
+      return (img.decode ? img.decode() : Promise.resolve()).catch(() => {}).finally(() => { window.__preloadDone++; });
+    })).then(() => { window.__preloadReady = true; });
+  } catch (e) { /* preload 실패해도 게임 정상 진행(fallback 유지) */ }
+}
+// 첫 페인트 후 시작(첫 화면 멈춤 방지). requestIdleCallback=유휴 시 조기 시작(있으면)·setTimeout=항상 발동 backstop.
+//   ★Safari(requestIdleCallback 미지원)·hidden 탭 모두에서 반드시 1회 실행(가드로 중복 방지).
+let __preloadStarted = false;
+function __startPreload(){ if (__preloadStarted) return; __preloadStarted = true; preloadCoreAssets(); }
+if (window.requestIdleCallback) requestIdleCallback(__startPreload, { timeout: 1000 });
+setTimeout(__startPreload, 800);   // backstop — 유휴 미도달/미지원 대비 항상 발동
 
 showScreen('title');
 </script>
