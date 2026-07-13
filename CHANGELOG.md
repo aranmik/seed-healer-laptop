@@ -1,8 +1,9 @@
 # Changelog — Seed Healer
 
-## Demo v1 — 2026-07-12 (FINAL PASS · Locked Candidate)
+## Demo v1 — 2026-07-12 (FINAL PASS / **LOCKED** · tag `demo-v1.0.0`)
 
-첫 공개 Demo. 3보스 Vertical Slice로, "공격하지 않는 사제" 손맛을 완성했다.
+첫 공개 Demo. 3보스 Vertical Slice로 "공격하지 않는 사제" 손맛을 완성하고, 이 버전으로 **잠금(LOCKED)** 했다.
+공개 플레이: https://aranmik.github.io/seed-healer-laptop/ · 나라님 3보스 실제 클리어 + 공개 모바일 실기 PASS.
 
 ### 전투 코어
 - 결정론 헤드리스 전투 코어(사제 1 + 고정 파티 3 vs 보스). 마나·시전·보호막·지속·속박·토템·덫·압박 페이즈.
@@ -19,14 +20,22 @@
 
 ### 전투 정보 전달 / UI
 - **위협 대기열**: 곧 올 위협(최대 3)이 독립 행으로 줄 서고, 각 위협이 개별로 진행·해결·퇴장.
-- **이벤트 피드**: 방금 일어난 일 / 막 해결된 일(차단·정화·개화·무료 시전).
-- 머리 위 행동 표기(아군 공격/보스 signature), 하단 command UI(큰 아이콘 + 마나 pill).
+- **전장 결과 토스트**: 방금 해결된 결과(보호막 차단·정화·씨앗 개화·무료 시전·직격)를 전장 위에 짧게 띄웠다 사라짐.
+- 머리 위 행동 표기(signature 공격), 하단 command UI(큰 아이콘 + 마나 비용 pill).
 
-### 밸런스
+### 밸런스 / FX
 - 3보스 × loadout 압박 밸런스. canonical baseline과 제품 Demo v1 override 분리(canonical tuning 동결).
+- signature FX(강타/처형/해일 등) 한 단계 과장·특별한 순간만.
 
-### 범위 밖 (미포함)
-- 저장·기록 실데이터 · 마을 경제/성장 · 4번째 이후 보스 · 사운드 · 스토리.
+### 모바일 / 성능
+- 모바일 staging + 화면 fit: 상단 축소·전장 세로 확장·전사 중앙/도적 좌/법사 우/ARIA 우하단 후방.
+- 핵심 이미지 preload/decode(51개)로 최초 진입 체감 개선.
+
+### 공개
+- **GitHub Pages 공개 배포** — https://aranmik.github.io/seed-healer-laptop/ (모바일 실기 PASS).
+
+### 범위 밖 (미포함 · 의도적)
+- **사운드(이번 버전 범위 밖·blocker 아님)** · 저장·기록 · 마을 경제/성장/보상/장비 · 4번째 이후 보스 · 추가 동료/스킬 · 스토리 · 다중 난이도.
 
 ### 상태
-- Demo v1 기능 추가 종료. 공개 Preview Release → Lock & Archive 예정.
+- **Demo v1 LOCKED (2026-07-12)** — 기능 추가·핫픽스 종료. 이후 변경은 별도 버전/브랜치/카드.

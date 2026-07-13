@@ -3,9 +3,12 @@
 > **“나는 공격하지 않는다.
 > 하지만 전투의 결과는 내 손에 달려 있다.”**
 
-**Demo v1 — FINAL PASS**
-**Demo 완성일: 2026-07-12**
-**상태: Demo v1 기능 추가 종료 / Locked Candidate (공개 URL 실기 대기)**
+**Demo v1 — FINAL PASS / LOCKED** (tag `demo-v1.0.0`)
+**Demo 완성 및 잠금 확정일: 2026-07-12**
+**공개 플레이: https://aranmik.github.io/seed-healer-laptop/**
+
+> **나라님 3보스 실제 클리어 + 손맛 FINAL PASS · 공개 GitHub Pages 모바일 실기 PASS.**
+> Demo v1은 이 버전으로 **잠금(LOCKED)** 되었습니다 — 기능 추가·핫픽스 종료. 이후 변경은 이 정본을 직접 수정하지 않고 별도 후속 단계에서만 진행합니다.
 
 세 가지 위협을 상대로 스킬을 준비하고, 전장을 읽고, 사제로 파티를 살려내는 **3보스 Vertical Slice**.
 당신은 공격하지 않는 사제 **아리아(ARIA)**. 동료들이 싸우는 동안, 당신의 손끝이 파티의 생사를 가른다.
@@ -44,7 +47,7 @@
 
 - **저장 기능 없음** — 새로고침하면 처음부터. (Demo v1은 단일 세션 Vertical Slice)
 - **권장 화면: 모바일 세로 390×844 기준** — 세로형 한 손 플레이에 맞춰 설계됨. 데스크톱 브라우저에서도 실행되지만 세로 프레임으로 보인다.
-- 사운드 없음 (Demo v1 범위 밖).
+- **사운드 없음** — Demo v1의 **명시적 범위 밖**이며 누락 오류(blocker)가 아니다. 사운드는 Demo v1 잠금 이후 별도 후속 단계에서만 검토한다.
 
 ## 이번 Demo에 없는 것 (미포함 범위)
 
@@ -77,4 +80,5 @@ npx serve -l 5181 .
 
 ---
 
-*Seed Healer Demo v1 · FINAL PASS 2026-07-12 · Locked Candidate*
+*Seed Healer Demo v1 · FINAL PASS / LOCKED · 2026-07-12 · tag `demo-v1.0.0`*
+*Demo v1 개발 종료. 이 정본은 직접 수정하지 않는다 — 이후 작업은 별도 버전/브랜치/카드에서.*
