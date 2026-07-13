@@ -34,11 +34,12 @@
 | botSim 16/0 · probeSim ALL PASS · canonical md5 3파일 불변 | |
 | 회귀 전체 ALL PASS | mobileFitHotfix 19 · demoV1FinalMicroPolish 20 · finalBattleReadability 42 · skillPoolContract 39 · coreExtension 42 · callResponse 22 · skillFx 28 · **bossTele 29(ARIA 갱신)** · spacing 16 · clarity 26 · shrine 29 · loadoutLink 26 · balance 19 |
 | **로컬(5181·390px)** | ARIA cx 246(전사195↔법사336 사이·3보스 동일) · heal-ring 추종 246 · **preload total 51/done 51/ready true·bad(master/source) 0** · overflow 0 · console 0 · broken 0 · 3보스 이름 정상 |
-| **공개 URL(https://aranmik.github.io/seed-healer-laptop/·390px)** | (§5 재배포 후 실측) |
+| **공개 URL(https://aranmik.github.io/seed-healer-laptop/·390px)** | ARIA cx 246(전사195↔법사336 사이) · heal-ring 추종 246 · **preload 51 자산 전부 네트워크 fetch 완료(65/65 responseEnd·master/source 0)** · grace 아이콘 다운로드(383KB) · 3보스 이름 정상 · overflow 0 · console 0 · broken 0. ※탭 hidden으로 decode()/naturalWidth는 지연(프리뷰 한계)이나 네트워크 캐시 워밍은 완료 — 실 가시 브라우저(폰)선 decode 정상 |
 - ★frozen-tab: requestIdleCallback은 hidden 프리뷰서 미발동 → **setTimeout backstop**으로 실동작 확인(총 51 preload/decode 완료 실측). 스크린샷은 rAF 타임아웃 → DOM/geometry/performance/console 증빙. 실눈맛=나라님 폰.
 
 ## 5. push / Pages 재배포
-- (§commit/push 후 기입) commit hash · Pages build · 공개 URL 재검증.
+- commit `9c2db82` "fix(final-lock): ARIA offset right + core-asset preload" → origin/main (local==origin·force push 0).
+- Pages build **built**(commit 9c2db82) · 공개 URL LIVE 재검증 완료(위 §4 표).
 
 ## 6. 보호/정본 유지
 - Demo v1 전투 손맛·3보스 수치·seed 제품9/canonical12·은총 계약·9풀6장착·위협 대기열·mobile fit hotfix 반영·공개 URL 배포 상태 전부 유지.
